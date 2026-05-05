@@ -43,7 +43,7 @@ export const applicationSchema = z
       .max(80, "Village name is too long")
       .regex(VILLAGE_RE, "Only letters, numbers, spaces and hyphens"),
     // Honeypot — must remain empty.
-    website: z.string().max(0).optional().default(""),
+    website: z.string().max(0),
   })
   .refine(
     (data) =>
