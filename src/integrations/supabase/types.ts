@@ -14,7 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      applications: {
+        Row: {
+          constituency: string
+          county: string
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          id_number: string
+          phone: string
+          village: string
+          ward: string
+        }
+        Insert: {
+          constituency: string
+          county?: string
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          id_number: string
+          phone: string
+          village: string
+          ward: string
+        }
+        Update: {
+          constituency?: string
+          county?: string
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          id_number?: string
+          phone?: string
+          village?: string
+          ward?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
