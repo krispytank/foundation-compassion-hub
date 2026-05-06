@@ -1,3 +1,3 @@
-// Foundation contact email — change this to the real CK Foundation inbox.
-export const FOUNDATION_EMAIL = "applications@ckfoundation.org";
-export const FOUNDATION_NAME = "CK Foundation";
+// Foundation contact email — change this to the real Collins Kiprono Foundation inbox.
+export const FOUNDATION_EMAIL = "applications@collinskiprono.org";
+export const FOUNDATION_NAME = "Collins Kiprono Foundation";
