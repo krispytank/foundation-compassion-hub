@@ -1,0 +1,19 @@
+{
+  "buildCommand": "bun run build",
+  "devCommand": "bun run dev",
+  "installCommand": "bun install",
+  "framework": "vite",
+  "env": {
+    "SUPABASE_URL": {
+      "description": "Your Supabase project URL"
+    },
+    "SUPABASE_SERVICE_ROLE_KEY": {
+      "description": "Your Supabase service role key (from Settings > API)"
+    },
+    "RESEND_API_KEY": {
+      "description": "Your Resend API key for sending emails"
+    }
+  },
+  "regions": ["sfo1"],
+  "outputDirectory": "dist"
+}

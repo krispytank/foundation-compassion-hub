@@ -3,27 +3,24 @@ import { applicationSchema, type ApplicationInput } from "@/lib/application-sche
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { FOUNDATION_EMAIL, FOUNDATION_NAME } from "./foundation.config";
 
-// Best-effort email sender. If LOVABLE_API_KEY + RESEND_API_KEY are set, sends
-// via Resend through the Lovable connector gateway. Otherwise it logs and
-// returns false so the submission still succeeds.
+// Best-effort email sender. If RESEND_API_KEY is set, sends via Resend.
+// Otherwise it logs and returns false so the submission still succeeds.
 async function sendEmail(opts: {
   to: string;
   subject: string;
   html: string;
 }): Promise<boolean> {
-  const lovableKey = process.env.LOVABLE_API_KEY;
   const resendKey = process.env.RESEND_API_KEY;
-  if (!lovableKey || !resendKey) {
+  if (!resendKey) {
     console.log("[email:not-configured]", opts.to, opts.subject);
     return false;
   }
   try {
-    const res = await fetch("https://connector-gateway.lovable.dev/resend/emails", {
+    const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${lovableKey}`,
-        "X-Connection-Api-Key": resendKey,
+        Authorization: `Bearer ${resendKey}`,
       },
       body: JSON.stringify({
         from: `${FOUNDATION_NAME} <onboarding@resend.dev>`,

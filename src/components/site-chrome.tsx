@@ -1,13 +1,16 @@
 import { Link } from "@tanstack/react-router";
-import logo from "@/assets/logo.ico";
-import handshake from "@/assets/handshake-thank-you.jpg";
+import logo from "@/assets/logo.jpg";
 
 export function SiteHeader() {
   return (
     <header className="border-b border-border/60 bg-background/80 backdrop-blur sticky top-0 z-40">
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2.5 group">
-          <img src={logo} alt="Collins Kiprono Foundation logo" className="h-9 w-9 rounded-full object-cover" />
+        <Link to="/" className="flex items-center gap-3 group">
+          <img
+            src={logo}
+            alt="Collins Kiprono Foundation logo"
+            className="h-12 w-12 rounded-full object-cover shadow-lg ring-2 ring-white/90 bg-white"
+          />
           <span className="font-display text-base sm:text-lg leading-none">
             <span className="font-semibold">Collins Kiprono Foundation</span>
           </span>
@@ -43,10 +46,7 @@ export function SiteHeader() {
 export function SiteFooter() {
   return (
     <footer className="relative mt-24 overflow-hidden bg-primary text-primary-foreground">
-      <div aria-hidden="true" className="absolute inset-0">
-        <img src={handshake} alt="" className="w-full h-full object-cover opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/90 to-primary/70" />
-      </div>
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-primary via-primary/90 to-primary/70" />
       <div className="relative mx-auto max-w-6xl px-6 py-14">
         <div className="grid sm:grid-cols-3 gap-10">
           <div>

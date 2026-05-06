@@ -28,16 +28,12 @@ function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/85 via-primary/70 to-primary/40" />
         </div>
         <div className="relative mx-auto max-w-6xl px-6 pt-24 pb-32 sm:pt-32 sm:pb-40 text-primary-foreground">
-          <span className="inline-block rounded-full bg-white/15 backdrop-blur px-3 py-1 text-xs font-medium tracking-wide uppercase">
-            Collins Kiprono Foundation · Marakwet West Sub-County
-          </span>
           <h1 className="mt-6 text-4xl sm:text-6xl font-display font-semibold max-w-3xl leading-[1.05]">
             Building stronger hands, together.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-primary-foreground/90 leading-relaxed">
             From our recent community charity activity at Kapcherop Grounds to
-            the schools and homes of every ward, we walk alongside the people
-            of Marakwet West Sub-County — offering opportunity, support, and dignity.
+            the schools and homes of every ward, Walking with the people one hand, one family, one community at a time.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
@@ -45,7 +41,7 @@ function HomePage() {
               className="inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-6 py-3 font-medium shadow-elegant hover:brightness-105 transition"
               style={{ boxShadow: "var(--shadow-elegant)" }}
             >
-              Apply for support <ArrowRight className="h-4 w-4" />
+              Register <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/about"

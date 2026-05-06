@@ -107,7 +107,7 @@ function ApplyPage() {
               Application form
             </p>
             <h1 className="mt-2 text-3xl sm:text-4xl font-display font-semibold">
-              Apply for support
+              Apply for Membership
             </h1>
             <p className="mt-3 text-muted-foreground max-w-md">
               Open to residents of Marakwet West Sub-County. All fields are
