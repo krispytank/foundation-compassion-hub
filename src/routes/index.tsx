@@ -1,15 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
-import { ArrowRight, HeartHandshake, Sprout, Users } from "lucide-react";
+import { ArrowRight, GraduationCap, HeartHandshake, Handshake } from "lucide-react";
 import hero from "@/assets/hero-valley.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CK Foundation — Empowering Elgeyo-Marakwet" },
-      { name: "description", content: "A charitable foundation supporting families and communities across Elgeyo-Marakwet County. Apply for support today." },
-      { property: "og:title", content: "CK Foundation — Empowering Elgeyo-Marakwet" },
-      { property: "og:description", content: "Apply for support from the CK Foundation." },
+      { title: "Collins Kiprono Foundation — Empowering Elgeyo-Marakwet" },
+      { name: "description", content: "The Collins Kiprono Foundation supports community empowerment, education access, and partnership in Elgeyo-Marakwet County." },
+      { property: "og:title", content: "Collins Kiprono Foundation" },
+      { property: "og:description", content: "Community empowerment, education access, and partnerships across Elgeyo-Marakwet." },
     ],
   }),
   component: HomePage,
@@ -28,10 +28,10 @@ function HomePage() {
         </div>
         <div className="relative mx-auto max-w-6xl px-6 pt-24 pb-32 sm:pt-32 sm:pb-40 text-primary-foreground">
           <span className="inline-block rounded-full bg-white/15 backdrop-blur px-3 py-1 text-xs font-medium tracking-wide uppercase">
-            CK Foundation · Elgeyo-Marakwet
+            Collins Kiprono Foundation · Elgeyo-Marakwet
           </span>
           <h1 className="mt-6 text-4xl sm:text-6xl font-display font-semibold max-w-3xl leading-[1.05]">
-            Lifting communities, one family at a time.
+            Empowering communities, one family at a time.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-primary-foreground/90 leading-relaxed">
             We provide opportunity, support, and dignity to residents across
@@ -60,9 +60,9 @@ function HomePage() {
       <section className="mx-auto max-w-6xl px-6 -mt-16 relative z-10">
         <div className="grid sm:grid-cols-3 gap-4">
           {[
-            { icon: HeartHandshake, title: "Direct support", body: "Targeted assistance for vulnerable households across the county." },
-            { icon: Sprout, title: "Sustainable growth", body: "Programs that empower families to build a lasting future." },
-            { icon: Users, title: "Community first", body: "Rooted in the wards we serve — listening before we act." },
+            { icon: HeartHandshake, title: "Community Empowerment", body: "Supporting initiatives that uplift communities and foster sustainable development." },
+            { icon: GraduationCap, title: "Education Access", body: "Providing resources and opportunities to ensure every child has access to quality education." },
+            { icon: Handshake, title: "Partnership & Collaboration", body: "Working hand-in-hand with local organizations, governments, and volunteers to maximize impact." },
           ].map(({ icon: Icon, title, body }) => (
             <div
               key={title}
