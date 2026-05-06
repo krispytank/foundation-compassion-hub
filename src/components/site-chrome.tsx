@@ -1,13 +1,12 @@
 import { Link } from "@tanstack/react-router";
+import logo from "@/assets/logo.ico";
 
 export function SiteHeader() {
   return (
     <header className="border-b border-border/60 bg-background/80 backdrop-blur sticky top-0 z-40">
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <span className="grid place-items-center h-9 w-9 rounded-full bg-primary text-primary-foreground font-display font-bold text-sm">
-            CK
-          </span>
+          <img src={logo} alt="CK Foundation logo" className="h-9 w-9 rounded-full object-cover" />
           <span className="font-display text-lg leading-none">
             <span className="font-semibold">CK Foundation</span>
           </span>
