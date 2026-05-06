@@ -2,14 +2,15 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ArrowRight, GraduationCap, HeartHandshake, Handshake } from "lucide-react";
 import hero from "@/assets/hero-valley.jpg";
+import handshake from "@/assets/handshake-thank-you.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Collins Kiprono Foundation — Empowering Elgeyo-Marakwet" },
-      { name: "description", content: "The Collins Kiprono Foundation supports community empowerment, education access, and partnership in Elgeyo-Marakwet County." },
+      { title: "Collins Kiprono Foundation — Empowering Marakwet West Sub-County" },
+      { name: "description", content: "The Collins Kiprono Foundation supports community empowerment, education access, and partnership in Marakwet West Sub-County." },
       { property: "og:title", content: "Collins Kiprono Foundation" },
-      { property: "og:description", content: "Community empowerment, education access, and partnerships across Elgeyo-Marakwet." },
+      { property: "og:description", content: "Community empowerment, education access, and partnerships across Marakwet West Sub-County." },
     ],
   }),
   component: HomePage,
@@ -28,15 +29,15 @@ function HomePage() {
         </div>
         <div className="relative mx-auto max-w-6xl px-6 pt-24 pb-32 sm:pt-32 sm:pb-40 text-primary-foreground">
           <span className="inline-block rounded-full bg-white/15 backdrop-blur px-3 py-1 text-xs font-medium tracking-wide uppercase">
-            Collins Kiprono Foundation · Elgeyo-Marakwet
+            Collins Kiprono Foundation · Marakwet West Sub-County
           </span>
           <h1 className="mt-6 text-4xl sm:text-6xl font-display font-semibold max-w-3xl leading-[1.05]">
-            Empowering communities, one family at a time.
+            Building stronger hands, together.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-primary-foreground/90 leading-relaxed">
-            We provide opportunity, support, and dignity to residents across
-            Marakwet and Keiyo. If you live in Elgeyo-Marakwet County, you are
-            invited to apply.
+            From our recent community charity activity at Kapcherop Grounds to
+            the schools and homes of every ward, we walk alongside the people
+            of Marakwet West Sub-County — offering opportunity, support, and dignity.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
@@ -79,13 +80,38 @@ function HomePage() {
         </div>
       </section>
 
+      {/* Recent activity / Thank you */}
+      <section className="mx-auto max-w-6xl px-6 mt-24">
+        <div className="grid md:grid-cols-2 gap-8 items-center rounded-3xl overflow-hidden border border-border/60 bg-card" style={{ boxShadow: "var(--shadow-card)" }}>
+          <div className="relative aspect-square md:aspect-auto md:h-full min-h-[320px]">
+            <img src={handshake} alt="Two hands clasped together at the Kapcherop community charity activity" className="absolute inset-0 w-full h-full object-cover" />
+          </div>
+          <div className="p-8 sm:p-12">
+            <p className="text-xs font-semibold uppercase tracking-wider text-primary">Recent activity</p>
+            <h2 className="mt-2 text-3xl font-display font-semibold">Thank you, Kapcherop.</h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              We are deeply grateful to everyone who showed up for our recent
+              community charity activity at <span className="font-medium text-foreground">Kapcherop Grounds, Marakwet West Sub-County</span>.
+              Your presence, generosity and partnership remind us what is
+              possible when we hold each other's hands.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link to="/about" className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-5 py-2.5 text-sm font-medium hover:bg-primary/90 transition">
+                Read our story <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="mx-auto max-w-6xl px-6 mt-24">
         <div className="rounded-3xl bg-primary text-primary-foreground p-10 sm:p-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="max-w-xl">
             <h2 className="text-3xl font-display font-semibold">Ready to apply?</h2>
             <p className="mt-2 text-primary-foreground/85">
-              Fill in a short form. We'll send you a confirmation immediately.
+              Open to all residents of Marakwet West Sub-County. Fill in a short
+              form — we'll send a confirmation immediately.
             </p>
           </div>
           <Link
