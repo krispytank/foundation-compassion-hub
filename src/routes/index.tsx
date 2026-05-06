@@ -6,10 +6,10 @@ import hero from "@/assets/hero-valley.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Collins Kiprono Foundation — Empowering Elgeyo-Marakwet" },
-      { name: "description", content: "The Collins Kiprono Foundation supports community empowerment, education access, and partnership in Elgeyo-Marakwet County." },
+      { title: "Collins Kiprono Foundation — Empowering Marakwet West Sub-County" },
+      { name: "description", content: "The Collins Kiprono Foundation supports community empowerment, education access, and partnership in Marakwet West Sub-County." },
       { property: "og:title", content: "Collins Kiprono Foundation" },
-      { property: "og:description", content: "Community empowerment, education access, and partnerships across Elgeyo-Marakwet." },
+      { property: "og:description", content: "Community empowerment, education access, and partnerships across Marakwet West Sub-County." },
     ],
   }),
   component: HomePage,
@@ -28,15 +28,15 @@ function HomePage() {
         </div>
         <div className="relative mx-auto max-w-6xl px-6 pt-24 pb-32 sm:pt-32 sm:pb-40 text-primary-foreground">
           <span className="inline-block rounded-full bg-white/15 backdrop-blur px-3 py-1 text-xs font-medium tracking-wide uppercase">
-            Collins Kiprono Foundation · Elgeyo-Marakwet
+            Collins Kiprono Foundation · Marakwet West Sub-County
           </span>
           <h1 className="mt-6 text-4xl sm:text-6xl font-display font-semibold max-w-3xl leading-[1.05]">
-            Empowering communities, one family at a time.
+            Building stronger hands, together.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-primary-foreground/90 leading-relaxed">
-            We provide opportunity, support, and dignity to residents across
-            Marakwet and Keiyo. If you live in Elgeyo-Marakwet County, you are
-            invited to apply.
+            From our recent community charity activity at Kapcherop Grounds to
+            the schools and homes of every ward, we walk alongside the people
+            of Marakwet West Sub-County — offering opportunity, support, and dignity.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
