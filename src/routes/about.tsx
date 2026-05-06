@@ -5,9 +5,9 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About — Collins Kiprono Foundation" },
-      { name: "description", content: "About the Collins Kiprono Foundation, serving Elgeyo-Marakwet County." },
+      { name: "description", content: "About the Collins Kiprono Foundation, serving Marakwet West Sub-County." },
       { property: "og:title", content: "About — Collins Kiprono Foundation" },
-      { property: "og:description", content: "Learn about the Collins Kiprono Foundation's mission in Elgeyo-Marakwet." },
+      { property: "og:description", content: "Learn about the Collins Kiprono Foundation's mission in Marakwet West Sub-County." },
     ],
   }),
   component: AboutPage,
@@ -27,9 +27,11 @@ function AboutPage() {
         <h1 className="text-4xl sm:text-5xl font-display font-semibold">About the foundation</h1>
         <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
           The Collins Kiprono Foundation is a charitable organization committed
-          to uplifting the lives of residents across Elgeyo-Marakwet County.
-          From the highlands of Marakwet to the valleys of Keiyo, we work hand
-          in hand with local communities to deliver meaningful support.
+          to uplifting the lives of residents of Marakwet West Sub-County.
+          From Kapsowar to Lelan, Sengwer, Moiben/Kuserwo and Arror, we work
+          hand in hand with local communities to deliver meaningful support —
+          most recently through our community charity activity at Kapcherop
+          Grounds, where neighbours, leaders and volunteers came together as one.
         </p>
 
         <div className="mt-12 space-y-8">
