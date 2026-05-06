@@ -88,21 +88,32 @@ function ApplyPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
+      {/* Decorative background using the handshake image */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <img src={handshake} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.08]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+      </div>
       <Toaster richColors position="top-center" />
       <SiteHeader />
 
       <main className="mx-auto w-full max-w-2xl px-6 py-14">
-        <header className="mb-10">
-          <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-            Application form
-          </p>
-          <h1 className="mt-2 text-3xl sm:text-4xl font-display font-semibold">
-            Apply for support
-          </h1>
-          <p className="mt-3 text-muted-foreground">
-            All fields are required. Your information is kept confidential.
-          </p>
+        <header className="mb-10 relative overflow-hidden rounded-3xl border border-border/60 bg-card p-8 sm:p-10" style={{ boxShadow: "var(--shadow-card)" }}>
+          <div aria-hidden="true" className="absolute -right-16 -top-16 h-56 w-56 rounded-full overflow-hidden opacity-30">
+            <img src={handshake} alt="" className="w-full h-full object-cover" />
+          </div>
+          <div className="relative">
+            <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+              Application form
+            </p>
+            <h1 className="mt-2 text-3xl sm:text-4xl font-display font-semibold">
+              Apply for support
+            </h1>
+            <p className="mt-3 text-muted-foreground max-w-md">
+              Open to residents of Marakwet West Sub-County. All fields are
+              required. Your information is kept confidential.
+            </p>
+          </div>
         </header>
 
         {submitted ? (
