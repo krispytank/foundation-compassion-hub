@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ArrowRight, GraduationCap, HeartHandshake, Handshake } from "lucide-react";
 import hero from "@/assets/hero-valley.jpg";
+import handshake from "@/assets/handshake-thank-you.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
