@@ -8,6 +8,7 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { Button } from "@/components/ui/button";
+import handshake from "@/assets/handshake-thank-you.jpg";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -31,10 +32,10 @@ import { submitApplication } from "@/server/applications.functions";
 export const Route = createFileRoute("/apply")({
   head: () => ({
     meta: [
-      { title: "Apply — CK Foundation" },
-      { name: "description", content: "Apply for support from the CK Foundation. Open to all residents of Elgeyo-Marakwet County." },
-      { property: "og:title", content: "Apply — CK Foundation" },
-      { property: "og:description", content: "Submit your application to CK Foundation in minutes." },
+      { title: "Apply — Collins Kiprono Foundation" },
+      { name: "description", content: "Apply for support from the Collins Kiprono Foundation. Open to residents of Marakwet West Sub-County." },
+      { property: "og:title", content: "Apply — Collins Kiprono Foundation" },
+      { property: "og:description", content: "Submit your application to the Collins Kiprono Foundation in minutes." },
     ],
   }),
   component: ApplyPage,
