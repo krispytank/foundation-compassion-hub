@@ -80,13 +80,38 @@ function HomePage() {
         </div>
       </section>
 
+      {/* Recent activity / Thank you */}
+      <section className="mx-auto max-w-6xl px-6 mt-24">
+        <div className="grid md:grid-cols-2 gap-8 items-center rounded-3xl overflow-hidden border border-border/60 bg-card" style={{ boxShadow: "var(--shadow-card)" }}>
+          <div className="relative aspect-square md:aspect-auto md:h-full min-h-[320px]">
+            <img src={handshake} alt="Two hands clasped together at the Kapcherop community charity activity" className="absolute inset-0 w-full h-full object-cover" />
+          </div>
+          <div className="p-8 sm:p-12">
+            <p className="text-xs font-semibold uppercase tracking-wider text-primary">Recent activity</p>
+            <h2 className="mt-2 text-3xl font-display font-semibold">Thank you, Kapcherop.</h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              We are deeply grateful to everyone who showed up for our recent
+              community charity activity at <span className="font-medium text-foreground">Kapcherop Grounds, Marakwet West Sub-County</span>.
+              Your presence, generosity and partnership remind us what is
+              possible when we hold each other's hands.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link to="/about" className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-5 py-2.5 text-sm font-medium hover:bg-primary/90 transition">
+                Read our story <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="mx-auto max-w-6xl px-6 mt-24">
         <div className="rounded-3xl bg-primary text-primary-foreground p-10 sm:p-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="max-w-xl">
             <h2 className="text-3xl font-display font-semibold">Ready to apply?</h2>
             <p className="mt-2 text-primary-foreground/85">
-              Fill in a short form. We'll send you a confirmation immediately.
+              Open to all residents of Marakwet West Sub-County. Fill in a short
+              form — we'll send a confirmation immediately.
             </p>
           </div>
           <Link
