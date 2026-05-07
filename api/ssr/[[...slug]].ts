@@ -1,4 +1,7 @@
-import entry from "../../../dist/server/index.js";
+import { createStartHandler, defaultStreamHandler } from "@tanstack/react-start/server";
+import type { Register } from "@tanstack/react-router";
+
+const fetch = createStartHandler(defaultStreamHandler);
 
 function createRequest(req: any): Request {
   const protocol = req.headers["x-forwarded-proto"] ?? "https";
@@ -23,13 +26,20 @@ function createRequest(req: any): Request {
 }
 
 export default async function handler(req: any, res: any) {
-  const response = await entry.fetch(createRequest(req));
+  try {
+    const response = await fetch(createRequest(req));
 
-  response.headers.forEach((value, key) => {
-    res.setHeader(key, value);
-  });
+    response.headers.forEach((value, key) => {
+      res.setHeader(key, value);
+    });
 
-  res.statusCode = response.status;
-  const body = await response.text();
-  res.end(body);
+    res.statusCode = response.status;
+    const body = await response.text();
+    res.end(body);
+  } catch (err) {
+    console.error("[ssr-error]", err);
+    res.statusCode = 500;
+    res.end("Internal Server Error");
+  }
 }
+
