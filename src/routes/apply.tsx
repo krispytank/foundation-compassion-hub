@@ -24,6 +24,7 @@ import {
   COUNTY,
   CONSTITUENCIES,
   WARDS_BY_CONSTITUENCY,
+  SUB_LOCATIONS_BY_WARD,
   type Constituency,
 } from "@/lib/locations";
 import { applicationSchema, type ApplicationInput } from "@/lib/application-schema";
@@ -62,6 +63,7 @@ function ApplyPage() {
       county: COUNTY,
       constituency: undefined as unknown as Constituency,
       ward: "",
+      sub_location: "",
       village: "",
       website: "",
     },
@@ -69,7 +71,9 @@ function ApplyPage() {
   });
 
   const constituency = watch("constituency");
+  const ward = watch("ward");
   const wards = constituency ? WARDS_BY_CONSTITUENCY[constituency] : [];
+  const subLocations = ward ? SUB_LOCATIONS_BY_WARD[ward] : [];
 
   const onSubmit = async (values: ApplicationInput) => {
     try {
@@ -89,11 +93,11 @@ function ApplyPage() {
 
   return (
     <div className="min-h-screen flex flex-col relative">
-      {/* Decorative background using the handshake image */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <img src={handshake} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.08]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-      </div>
+      {/* Clean decorative background without image text artifacts */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/90 to-background"
+      />
       <Toaster richColors position="top-center" />
       <SiteHeader />
 
@@ -264,6 +268,32 @@ function ApplyPage() {
                 </SelectContent>
               </Select>
               <input type="hidden" {...register("ward")} />
+            </Field>
+
+            <Field label="Sub Location" error={errors.sub_location?.message} htmlFor="sub_location">
+              <Select
+                value={watch("sub_location") ?? ""}
+                onValueChange={(v) =>
+                  setValue("sub_location", v, { shouldValidate: true, shouldTouch: true })
+                }
+                disabled={!ward}
+              >
+                <SelectTrigger id="sub_location">
+                  <SelectValue
+                    placeholder={
+                      ward ? "Select sub location" : "Select a ward first"
+                    }
+                  />
+                </SelectTrigger>
+                <SelectContent>
+                  {subLocations.map((s) => (
+                    <SelectItem key={s} value={s}>
+                      {s}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <input type="hidden" {...register("sub_location")} />
             </Field>
 
             <Field label="Village" error={errors.village?.message} htmlFor="village">

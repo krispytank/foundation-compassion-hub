@@ -61,7 +61,7 @@ function applicantEmailHtml(d: ApplicationInput): string {
         <li>Name: ${esc(d.full_name)}</li>
         <li>Email: ${esc(d.email)}</li>
         <li>Phone: ${esc(d.phone)}</li>
-        <li>Location: ${esc(d.village)}, ${esc(d.ward)}, ${esc(d.constituency)}, ${esc(d.county)}</li>
+        <li>Location: ${esc(d.village)}, ${esc(d.sub_location)}, ${esc(d.ward)}, ${esc(d.constituency)}, ${esc(d.county)}</li>
       </ul>
       <p style="color:#55575d; font-size:12px; margin-top:24px;">— The ${FOUNDATION_NAME} Team</p>
     </div>`;
@@ -76,6 +76,7 @@ function foundationEmailHtml(d: ApplicationInput): string {
         <li><strong>Name:</strong> ${esc(d.full_name)}</li>
         <li><strong>Email:</strong> ${esc(d.email)}</li>
         <li><strong>Phone:</strong> ${esc(d.phone)}</li>
+        <li><strong>Location:</strong> ${esc(d.village)}, ${esc(d.sub_location)}, ${esc(d.ward)}</li>
       </ul>
       <p style="color:#55575d; font-size:12px; margin-top:24px;">Full record stored in the foundation database.</p>
     </div>`;
@@ -97,6 +98,7 @@ export const submitApplication = createServerFn({ method: "POST" })
       county: data.county,
       constituency: data.constituency,
       ward: data.ward,
+      sub_location: data.sub_location,
       village: data.village,
     });
 

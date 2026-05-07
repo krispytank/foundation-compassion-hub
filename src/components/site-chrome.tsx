@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/logo.jpg";
+import { AccessibilitySettings } from "./accessibility-settings";
 
 export function SiteHeader() {
   return (
@@ -37,6 +38,7 @@ export function SiteHeader() {
           >
             Apply now
           </Link>
+          <AccessibilitySettings />
         </nav>
       </div>
     </header>

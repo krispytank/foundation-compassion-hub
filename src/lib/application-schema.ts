@@ -1,12 +1,11 @@
 import { z } from "zod";
-import { CONSTITUENCIES, WARDS_BY_CONSTITUENCY, type Constituency } from "./locations";
+import { CONSTITUENCIES, WARDS_BY_CONSTITUENCY, SUB_LOCATIONS_BY_WARD, type Constituency } from "./locations";
 
 // Strict regexes to neutralize injection vectors and reject control characters.
 const NAME_RE = /^[a-zA-Z\u00C0-\u017F'’\-\s]+$/;
 const PHONE_RE = /^\+?[0-9\s\-]{7,20}$/;
 const ID_RE = /^[A-Z0-9\-]{4,20}$/i;
-const VILLAGE_RE = /^[a-zA-Z0-9\u00C0-\u017F'’\-\s]+$/;
-
+const VILLAGE_RE = /^[a-zA-Z0-9\u00C0-\u017F'’\-\s]+$/;const SUBLOCATION_RE = /^[a-zA-Z0-9\u00C0-\u017F''\-\s]+$/;
 export const applicationSchema = z
   .object({
     full_name: z
@@ -36,6 +35,12 @@ export const applicationSchema = z
     county: z.literal("Elgeyo-Marakwet"),
     constituency: z.enum(CONSTITUENCIES),
     ward: z.string().trim().min(1, "Select a ward").max(80),
+    sub_location: z
+      .string()
+      .trim()
+      .min(1, "Select a sub location")
+      .max(80, "Sub location is too long")
+      .regex(SUBLOCATION_RE, "Only letters, numbers, spaces and hyphens"),
     village: z
       .string()
       .trim()
