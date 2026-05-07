@@ -1,8 +1,8 @@
 {
-  "buildCommand": "bun run build",
+  "buildCommand": "bun run vercel-build",
   "devCommand": "bun run dev",
   "installCommand": "bun install",
-  "framework": "vite",
+  "framework": "custom",
   "env": {
     "SUPABASE_URL": {
       "description": "Your Supabase project URL"
@@ -15,5 +15,9 @@
     }
   },
   "regions": ["sfo1"],
-  "outputDirectory": "dist"
+  "routes": [
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/api/ssr/$1" }
+  ]
 }

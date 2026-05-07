@@ -7,6 +7,7 @@
     "dev": "vite dev",
     "build": "vite build --ssr",
     "build:dev": "vite build --mode development --ssr",
+    "vercel-build": "bun run build && rm -rf public/assets && mkdir -p public/assets && cp -R dist/client/assets/* public/assets/",
     "start": "node dist/server/index.js",
     "preview": "vite preview",
     "lint": "eslint .",
