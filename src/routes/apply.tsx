@@ -227,6 +227,7 @@ function ApplyPage() {
                       shouldTouch: true,
                     });
                     setValue("ward", "", { shouldValidate: false });
+                    setValue("sub_location", "", { shouldValidate: false });
                   }}
                 >
                   <SelectTrigger id="constituency">
@@ -247,9 +248,10 @@ function ApplyPage() {
             <Field label="Ward" error={errors.ward?.message} htmlFor="ward">
               <Select
                 value={watch("ward") ?? ""}
-                onValueChange={(v) =>
-                  setValue("ward", v, { shouldValidate: true, shouldTouch: true })
-                }
+                onValueChange={(v) => {
+                  setValue("ward", v, { shouldValidate: true, shouldTouch: true });
+                  setValue("sub_location", "", { shouldValidate: false });
+                }}
                 disabled={!constituency}
               >
                 <SelectTrigger id="ward">

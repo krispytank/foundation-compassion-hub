@@ -5,7 +5,9 @@ import { CONSTITUENCIES, WARDS_BY_CONSTITUENCY, SUB_LOCATIONS_BY_WARD, type Cons
 const NAME_RE = /^[a-zA-Z\u00C0-\u017F'’\-\s]+$/;
 const PHONE_RE = /^\+?[0-9\s\-]{7,20}$/;
 const ID_RE = /^[A-Z0-9\-]{4,20}$/i;
-const VILLAGE_RE = /^[a-zA-Z0-9\u00C0-\u017F'’\-\s]+$/;const SUBLOCATION_RE = /^[a-zA-Z0-9\u00C0-\u017F''\-\s]+$/;
+const VILLAGE_RE = /^[a-zA-Z0-9\u00C0-\u017F'’\-\s]+$/;
+const SUBLOCATION_RE = /^[a-zA-Z0-9\u00C0-\u017F'’\-\s]+$/;
+
 export const applicationSchema = z
   .object({
     full_name: z
@@ -54,6 +56,11 @@ export const applicationSchema = z
     (data) =>
       WARDS_BY_CONSTITUENCY[data.constituency as Constituency].includes(data.ward),
     { path: ["ward"], message: "Ward does not match the selected constituency" },
+  )
+  .refine(
+    (data) =>
+      SUB_LOCATIONS_BY_WARD[data.ward]?.includes(data.sub_location),
+    { path: ["sub_location"], message: "Sub location does not match the selected ward" },
   );
 
 export type ApplicationInput = z.infer<typeof applicationSchema>;

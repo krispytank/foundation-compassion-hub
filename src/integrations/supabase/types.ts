@@ -24,6 +24,7 @@ export type Database = {
           id: string
           id_number: string
           phone: string
+          sub_location: string
           village: string
           ward: string
         }
@@ -36,6 +37,7 @@ export type Database = {
           id?: string
           id_number: string
           phone: string
+          sub_location: string
           village: string
           ward: string
         }
@@ -48,6 +50,7 @@ export type Database = {
           id?: string
           id_number?: string
           phone?: string
+          sub_location?: string
           village?: string
           ward?: string
         }

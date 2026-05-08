@@ -9,6 +9,7 @@ CREATE TABLE public.applications (
   constituency TEXT NOT NULL,
   ward TEXT NOT NULL,
   village TEXT NOT NULL,
+  sub_location TEXT NOT NULL DEFAULT '',
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 

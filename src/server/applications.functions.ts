@@ -15,6 +15,14 @@ async function sendEmail(opts: {
     console.log("[email:not-configured]", opts.to, opts.subject);
     return false;
   }
+
+  // For now, only send emails to the foundation email (enock.ken@outlook.com)
+  // TODO: Verify a domain in Resend to send to external addresses
+  if (opts.to !== "enock.ken@outlook.com") {
+    console.log("[email:skipped] Only sending to foundation email until domain is verified", opts.to);
+    return false;
+  }
+
   try {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
