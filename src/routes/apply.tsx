@@ -28,7 +28,7 @@ import {
   type Constituency,
 } from "@/lib/locations";
 import { applicationSchema, type ApplicationInput } from "@/lib/application-schema";
-import { submitApplication } from "@/server/applications.functions";
+import { submitApplication } from "@/lib/applications.functions";
 
 export const Route = createFileRoute("/apply")({
   head: () => ({

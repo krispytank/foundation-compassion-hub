@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import Mailjet from "node-mailjet";
 import { applicationSchema, type ApplicationInput } from "@/lib/application-schema";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
-import { FOUNDATION_EMAIL, FOUNDATION_NAME } from "./foundation.config";
+import { FOUNDATION_EMAIL, FOUNDATION_NAME } from "@/lib/foundation.config";
 
 // Best-effort email sender. If Mailjet credentials are set, sends via Mailjet.
 // Otherwise it logs and returns false so the submission still succeeds.
