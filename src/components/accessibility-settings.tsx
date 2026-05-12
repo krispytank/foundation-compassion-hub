@@ -12,7 +12,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { useTheme, useAccessibility } from "@/lib/theme-context";
+import { useTheme, useAccessibility, type Theme } from "@/lib/theme-context";
 
 export function AccessibilitySettings() {
   const { theme, setTheme, resolvedTheme } = useTheme();
@@ -21,38 +21,30 @@ export function AccessibilitySettings() {
 
   const ThemeIcon = theme === "light" ? Sun : theme === "dark" ? Moon : Monitor;
 
+  const cycleTheme = () => {
+    const next: Record<Theme, Theme> = { light: "dark", dark: "system", system: "light" };
+    setTheme(next[theme]);
+  };
+
+  const themeLabel: Record<Theme, string> = {
+    light: "Light mode",
+    dark: "Dark mode",
+    system: "System theme",
+  };
+
   return (
     <div className="flex items-center gap-2">
       {/* Theme Toggle */}
-      <div className="flex items-center rounded-md border">
-        <Button
-          variant={theme === "light" ? "default" : "ghost"}
-          size="sm"
-          onClick={() => setTheme("light")}
-          className="rounded-r-none border-r"
-          aria-label="Switch to light mode"
-        >
-          <Sun className="h-4 w-4" />
-        </Button>
-        <Button
-          variant={theme === "dark" ? "default" : "ghost"}
-          size="sm"
-          onClick={() => setTheme("dark")}
-          className="rounded-none border-r"
-          aria-label="Switch to dark mode"
-        >
-          <Moon className="h-4 w-4" />
-        </Button>
-        <Button
-          variant={theme === "system" ? "default" : "ghost"}
-          size="sm"
-          onClick={() => setTheme("system")}
-          className="rounded-l-none"
-          aria-label="Use system theme"
-        >
-          <Monitor className="h-4 w-4" />
-        </Button>
-      </div>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={cycleTheme}
+        aria-label={`Switch theme (current: ${themeLabel[theme]})`}
+        className="flex items-center gap-1.5"
+      >
+        <ThemeIcon className="h-4 w-4" />
+        <span className="text-xs hidden sm:inline">{themeLabel[theme]}</span>
+      </Button>
 
       {/* Accessibility Settings Dialog */}
       <Dialog open={open} onOpenChange={setOpen}>

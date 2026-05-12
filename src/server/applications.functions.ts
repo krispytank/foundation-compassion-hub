@@ -1,47 +1,52 @@
 import { createServerFn } from "@tanstack/react-start";
+import Mailjet from "node-mailjet";
 import { applicationSchema, type ApplicationInput } from "@/lib/application-schema";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { FOUNDATION_EMAIL, FOUNDATION_NAME } from "./foundation.config";
 
-// Best-effort email sender. If RESEND_API_KEY is set, sends via Resend.
+// Best-effort email sender. If Mailjet credentials are set, sends via Mailjet.
 // Otherwise it logs and returns false so the submission still succeeds.
 async function sendEmail(opts: {
   to: string;
   subject: string;
   html: string;
 }): Promise<boolean> {
-  const resendKey = process.env.RESEND_API_KEY;
-  if (!resendKey) {
+  const apiKey = process.env.MAILJET_API_KEY;
+  const secretKey = process.env.MAILJET_SECRET_KEY;
+  
+  if (!apiKey || !secretKey) {
     console.log("[email:not-configured]", opts.to, opts.subject);
     return false;
   }
 
-  // For now, only send emails to the foundation email (enock.ken@outlook.com)
-  // TODO: Verify a domain in Resend to send to external addresses
-  if (opts.to !== "enock.ken@outlook.com") {
-    console.log("[email:skipped] Only sending to foundation email until domain is verified", opts.to);
-    return false;
-  }
-
   try {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${resendKey}`,
-      },
-      body: JSON.stringify({
-        from: `${FOUNDATION_NAME} <onboarding@resend.dev>`,
-        to: [opts.to],
-        subject: opts.subject,
-        html: opts.html,
-      }),
+    const mailjet = Mailjet.apiConnect(apiKey, secretKey);
+    
+    const result = await mailjet.post("send", { version: "v3.1" }).request({
+      Messages: [
+        {
+          From: {
+            Email: FOUNDATION_EMAIL,
+            Name: FOUNDATION_NAME,
+          },
+          To: [
+            {
+              Email: opts.to,
+            },
+          ],
+          Subject: opts.subject,
+          HTMLPart: opts.html,
+        },
+      ],
     });
-    if (!res.ok) {
-      console.error("[email:failed]", res.status, await res.text());
+
+    if (result.response.status >= 200 && result.response.status < 300) {
+      console.log("[email:success] Email sent to", opts.to);
+      return true;
+    } else {
+      console.error("[email:failed]", result.response.status, result.response.data);
       return false;
     }
-    return true;
   } catch (err) {
     console.error("[email:error]", err);
     return false;

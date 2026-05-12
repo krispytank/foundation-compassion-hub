@@ -83,6 +83,18 @@ export function SiteFooter() {
         <div className="mt-12 pt-6 border-t border-primary-foreground/15 flex flex-col sm:flex-row gap-3 items-center justify-between text-xs text-primary-foreground/70">
           <p>© {new Date().getFullYear()} Collins Kiprono Foundation. All rights reserved.</p>
           <p>Marakwet West Sub-County, Kenya</p>
+          <p>
+            Built by {" "}
+            <a
+              href="https://briankiprono.lovable.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary-foreground/85 hover:text-gold transition-colors"
+            >
+              Rosh
+            </a>
+            .
+          </p>
         </div>
       </div>
     </footer>

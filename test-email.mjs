@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import Mailjet from 'node-mailjet'
 
 const supabaseUrl = process.env.SUPABASE_URL
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -10,68 +11,73 @@ if (!supabaseUrl || !supabaseKey) {
 
 const client = createClient(supabaseUrl, supabaseKey)
 
-// Test email function (updated to only send to foundation email)
+// Test email function using Mailjet
 async function sendEmail(opts) {
-  const resendKey = process.env.RESEND_API_KEY;
-  if (!resendKey) {
-    console.log("[email:not-configured]", opts.to, opts.subject);
-    return false;
-  }
-
-  // For now, only send emails to the foundation email (enock.ken@outlook.com)
-  if (opts.to !== "enock.ken@outlook.com") {
-    console.log("[email:skipped] Only sending to foundation email until domain is verified", opts.to);
+  const apiKey = process.env.MAILJET_API_KEY;
+  const secretKey = process.env.MAILJET_SECRET_KEY;
+  
+  if (!apiKey || !secretKey) {
+    console.log("[email:not-configured] Missing MAILJET_API_KEY or MAILJET_SECRET_KEY");
     return false;
   }
 
   try {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${resendKey}`,
-      },
-      body: JSON.stringify({
-        from: "Collins Kiprono Foundation <onboarding@resend.dev>",
-        to: [opts.to],
-        subject: opts.subject,
-        html: opts.html,
-      }),
+    const mailjet = Mailjet.apiConnect(apiKey, secretKey);
+    
+    const result = await mailjet.post("send", { version: "v3.1" }).request({
+      Messages: [
+        {
+          From: {
+            Email: "noreply@foundation.example.com",
+            Name: "Collins Kiprono Foundation",
+          },
+          To: [
+            {
+              Email: opts.to,
+            },
+          ],
+          Subject: opts.subject,
+          HTMLPart: opts.html,
+        },
+      ],
     });
-    if (!res.ok) {
-      console.error("[email:failed]", res.status, await res.text());
+
+    if (result.response.status >= 200 && result.response.status < 300) {
+      console.log("[email:success] Email sent to", opts.to);
+      return true;
+    } else {
+      console.error("[email:failed]", result.response.status, result.response.data);
       return false;
     }
-    console.log("[email:success] Email sent to", opts.to);
-    return true;
   } catch (err) {
     console.error("[email:error]", err);
     return false;
   }
 }
 
-console.log("Testing email functionality...");
-console.log("RESEND_API_KEY:", process.env.RESEND_API_KEY ? "✅ Set" : "❌ Not set");
-console.log("Testing with foundation email: enock.ken@outlook.com");
+console.log("Testing email functionality with Mailjet...");
+console.log("MAILJET_API_KEY:", process.env.MAILJET_API_KEY ? "✅ Set" : "❌ Not set");
+console.log("MAILJET_SECRET_KEY:", process.env.MAILJET_SECRET_KEY ? "✅ Set" : "❌ Not set");
+console.log("Testing with email: brianrosh92@gmail.com");
 
 const testHtml = `
 <div style="font-family: Arial, sans-serif; background:#ffffff; padding:24px;">
   <h2 style="color:#1f4d3f; margin:0 0 12px;">Test Email</h2>
-  <p>This is a test email to verify the Resend integration is working.</p>
+  <p>This is a test email to verify the Mailjet integration is working.</p>
   <p>Sent at: ${new Date().toISOString()}</p>
   <p style="color:#55575d; font-size:12px; margin-top:24px;">— Collins Kiprono Foundation Test</p>
 </div>`;
 
 const success = await sendEmail({
-  to: "enock.ken@outlook.com",
+  to: "brianrosh92@gmail.com",
   subject: "Test Email - Collins Kiprono Foundation",
   html: testHtml,
 });
 
 if (success) {
   console.log("✅ Test email sent successfully!");
-  console.log("📧 Check enock.ken@outlook.com for the test email");
+  console.log("📧 Check brianrosh92@gmail.com for the test email");
 } else {
-  console.log("❌ Test email failed - domain verification needed");
-  console.log("🔧 To fix: Go to https://resend.com/domains and verify a domain");
+  console.log("❌ Test email failed");
+  console.log("🔧 Make sure your Mailjet API credentials are set correctly");
 }
